@@ -1,0 +1,74 @@
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+}
+
+.incomeCard {
+  background-color: var(--color-income-bg);
+}
+
+.expenseCard {
+  background-color: var(--color-expense-bg);
+}
+
+.icon {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.incomeCard .label {
+  color: var(--color-income-hover);
+}
+
+.expenseCard .label {
+  color: var(--color-expense-hover);
+}
+
+.amount {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.incomeCard .amount {
+  color: var(--color-income);
+}
+
+.expenseCard .amount {
+  color: var(--color-expense);
+}
+
+@media (max-width: 380px) {
+  .amount {
+    font-size: var(--font-size-sm);
+  }
+}

@@ -1,0 +1,79 @@
+.navigator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-3);
+  margin-top: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.arrow {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--color-primary);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  transition: background-color var(--transition-fast);
+  line-height: 1;
+  padding-bottom: 2px;
+}
+
+.arrow:hover {
+  background-color: var(--color-primary-light);
+}
+
+.center {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+.secondary {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+
+.primary {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.savingsBadge {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: 3px var(--space-3);
+  border-radius: var(--radius-full);
+  margin-top: 2px;
+}
+
+.positive {
+  background-color: var(--color-income-bg);
+  color: var(--color-income);
+}
+
+.negative {
+  background-color: var(--color-expense-bg);
+  color: var(--color-expense);
+}
+
+.neutral {
+  background-color: var(--color-surface-secondary);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
