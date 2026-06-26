@@ -2,7 +2,7 @@ import { ALL_CATEGORIES } from '../../constants/categories';
 import { formatCurrency } from '../../utils/formatCurrency';
 import styles from './TransactionItem.module.css';
 
-const TransactionItem = ({ transaction, onDelete }) => {
+const TransactionItem = ({ transaction, onDelete, onEdit }) => {
   const category = ALL_CATEGORIES.find((c) => c.id === transaction.categoryId);
 
   return (
@@ -25,14 +25,24 @@ const TransactionItem = ({ transaction, onDelete }) => {
         {formatCurrency(transaction.amount)}
       </span>
 
-      <button
-        className={styles.deleteBtn}
-        onClick={() => onDelete(transaction.id)}
-        aria-label="Delete transaction"
-        title="Delete"
-      >
-        ✕
-      </button>
+      <div className={styles.actions}>
+        <button
+          className={styles.editBtn}
+          onClick={() => onEdit(transaction)}
+          aria-label="Edit transaction"
+          title="Edit"
+        >
+          ✏️
+        </button>
+        <button
+          className={styles.deleteBtn}
+          onClick={() => onDelete(transaction.id)}
+          aria-label="Delete transaction"
+          title="Delete"
+        >
+          ✕
+        </button>
+      </div>
     </div>
   );
 };

@@ -3,11 +3,12 @@ import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from '../../constants/categorie
 import CategoryPicker from '../CategoryPicker/CategoryPicker';
 import styles from './AddEntryModal.module.css';
 
-const AddEntryModal = ({ onSave, onClose }) => {
-  const [type, setType] = useState('expense');
-  const [categoryId, setCategoryId] = useState('');
-  const [description, setDescription] = useState('');
-  const [amount, setAmount] = useState('');
+const AddEntryModal = ({ onSave, onClose, initialData = null }) => {
+  const isEditing = initialData !== null;
+  const [type, setType] = useState(initialData?.type ?? 'expense');
+  const [categoryId, setCategoryId] = useState(initialData?.categoryId ?? '');
+  const [description, setDescription] = useState(initialData?.description ?? '');
+  const [amount, setAmount] = useState(initialData?.amount != null ? String(initialData.amount) : '');
   const [error, setError] = useState('');
 
   const categories =
@@ -47,7 +48,7 @@ const AddEntryModal = ({ onSave, onClose }) => {
       <div className={styles.modal}>
         {/* Header */}
         <div className={styles.header}>
-          <h2 className={styles.title}>Add Entry</h2>
+          <h2 className={styles.title}>{isEditing ? 'Edit Entry' : 'Add Entry'}</h2>
           <button className={styles.closeBtn} onClick={onClose} aria-label="Close">
             ✕
           </button>
@@ -126,7 +127,7 @@ const AddEntryModal = ({ onSave, onClose }) => {
             }`}
             onClick={handleSave}
           >
-            Save Entry
+            {isEditing ? 'Update Entry' : 'Save Entry'}
           </button>
         </div>
       </div>
