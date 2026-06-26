@@ -66,33 +66,53 @@
   color: var(--color-expense);
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.item:hover .actions {
+  opacity: 1;
+}
+
+/* always show on touch devices */
+@media (hover: none) {
+  .actions {
+    opacity: 1;
+  }
+}
+
+.editBtn,
 .deleteBtn {
-  font-size: 0.7rem;
-  color: var(--color-text-muted);
+  font-size: 0.75rem;
   width: 26px;
   height: 26px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  transition: background-color var(--transition-fast),
-    color var(--transition-fast), opacity var(--transition-fast);
-  opacity: 0;
+  transition: background-color var(--transition-fast);
 }
 
-.item:hover .deleteBtn {
-  opacity: 1;
+.editBtn {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.editBtn:hover {
+  background-color: var(--color-primary-light);
+}
+
+.deleteBtn {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
 }
 
 .deleteBtn:hover {
   background-color: var(--color-expense-bg);
   color: var(--color-expense);
-}
-
-/* always show delete button on touch devices */
-@media (hover: none) {
-  .deleteBtn {
-    opacity: 1;
-  }
 }

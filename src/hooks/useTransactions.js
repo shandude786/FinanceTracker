@@ -26,9 +26,26 @@ export const useTransactions = () => {
     setTransactions((prev) => prev.filter((t) => t.id !== id));
   };
 
+  /** Update editable fields of an existing transaction */
+  const updateTransaction = (id, { type, categoryId, description, amount }) => {
+    setTransactions((prev) =>
+      prev.map((t) =>
+        t.id === id
+          ? {
+              ...t,
+              type,
+              categoryId,
+              description: description ? description.trim() : '',
+              amount: parseFloat(amount),
+            }
+          : t
+      )
+    );
+  };
+
   /** Return transactions matching the current tab + date */
   const getFiltered = (tab, dateKey) =>
     filterTransactions(transactions, tab, dateKey);
 
-  return { transactions, addTransaction, deleteTransaction, getFiltered };
+  return { transactions, addTransaction, deleteTransaction, updateTransaction, getFiltered };
 };

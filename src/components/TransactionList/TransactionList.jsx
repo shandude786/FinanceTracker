@@ -1,7 +1,7 @@
 import TransactionItem from '../TransactionItem/TransactionItem';
 import styles from './TransactionList.module.css';
 
-const TransactionList = ({ incomeTransactions, expenseTransactions, onDelete }) => {
+const TransactionList = ({ incomeTransactions, expenseTransactions, onDelete, onEdit }) => {
   const hasIncome = incomeTransactions.length > 0;
   const hasExpense = expenseTransactions.length > 0;
 
@@ -26,7 +26,7 @@ const TransactionList = ({ incomeTransactions, expenseTransactions, onDelete }) 
           </div>
           <div>
             {incomeTransactions.map((t) => (
-              <TransactionItem key={t.id} transaction={t} onDelete={onDelete} />
+              <TransactionItem key={t.id} transaction={t} onDelete={onDelete} onEdit={onEdit} />
             ))}
           </div>
         </div>
@@ -41,7 +41,7 @@ const TransactionList = ({ incomeTransactions, expenseTransactions, onDelete }) 
           </div>
           <div>
             {expenseTransactions.map((t) => (
-              <TransactionItem key={t.id} transaction={t} onDelete={onDelete} />
+              <TransactionItem key={t.id} transaction={t} onDelete={onDelete} onEdit={onEdit} />
             ))}
           </div>
         </div>

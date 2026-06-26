@@ -14,8 +14,9 @@ function App() {
   const [activeTab, setActiveTab] = useState('daily');
   const [selectedDate, setSelectedDate] = useState(today());
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingTransaction, setEditingTransaction] = useState(null);
 
-  const { addTransaction, deleteTransaction, getFiltered } = useTransactions();
+  const { addTransaction, deleteTransaction, updateTransaction, getFiltered } = useTransactions();
 
   const filtered = getFiltered(activeTab, selectedDate);
   const incomeTransactions = filtered.filter((t) => t.type === 'income');
@@ -33,10 +34,25 @@ function App() {
     setSelectedDate((prev) => navigateDate(prev, activeTab, direction));
   };
 
+  const handleEdit = (transaction) => {
+    setEditingTransaction(transaction);
+    setIsModalOpen(true);
+  };
+
   const handleSave = (entry) => {
-    const entryDate = activeTab === 'daily' ? selectedDate : today();
-    addTransaction({ ...entry, date: entryDate });
+    if (editingTransaction) {
+      updateTransaction(editingTransaction.id, entry);
+    } else {
+      const entryDate = activeTab === 'daily' ? selectedDate : today();
+      addTransaction({ ...entry, date: entryDate });
+    }
     setIsModalOpen(false);
+    setEditingTransaction(null);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingTransaction(null);
   };
 
   return (
@@ -72,6 +88,7 @@ function App() {
           incomeTransactions={incomeTransactions}
           expenseTransactions={expenseTransactions}
           onDelete={deleteTransaction}
+          onEdit={handleEdit}
         />
       </div>
 
@@ -80,7 +97,8 @@ function App() {
       {isModalOpen && (
         <AddEntryModal
           onSave={handleSave}
-          onClose={() => setIsModalOpen(false)}
+          onClose={handleCloseModal}
+          initialData={editingTransaction}
         />
       )}
     </div>
