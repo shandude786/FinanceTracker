@@ -1,0 +1,390 @@
+/* ── Backdrop ── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 300;
+  animation: fadeIn var(--transition-base);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Modal sheet ── */
+.modal {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  width: 100%;
+  max-width: var(--container-max-width);
+  max-height: 92dvh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp var(--transition-base);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@media (min-width: 640px) {
+  .backdrop {
+    align-items: center;
+    padding: var(--space-4);
+  }
+  .modal {
+    border-radius: var(--radius-xl);
+    max-height: 88dvh;
+  }
+}
+
+/* ── Sticky header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background-color: var(--color-surface);
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.closeBtn {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.closeBtn:hover {
+  background-color: var(--color-expense-bg);
+  color: var(--color-expense);
+}
+
+/* ── Type tabs ── */
+.typeTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  flex-shrink: 0;
+}
+
+.typeTab {
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background-color: var(--color-surface-secondary);
+  border: 2px solid transparent;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.typeTab:hover {
+  color: var(--color-text-secondary);
+}
+
+.expenseActive {
+  background-color: var(--color-expense-bg);
+  border-color: var(--color-expense);
+  color: var(--color-expense);
+}
+
+.incomeActive {
+  background-color: var(--color-income-bg);
+  border-color: var(--color-income);
+  color: var(--color-income);
+}
+
+/* ── Scrollable body ── */
+.body {
+  padding: 0 var(--space-5) var(--space-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  flex: 1;
+}
+
+/* ── Section labels ── */
+.sectionLabel {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: var(--space-5) 0 var(--space-2);
+}
+
+/* ── Category list ── */
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.categoryRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-secondary);
+  min-height: 44px;
+}
+
+.catIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+
+.catLabel {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.lockBadge {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* ── Custom row actions ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+.editBtn,
+.deleteBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: background-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.editBtn:hover {
+  background-color: var(--color-surface);
+}
+
+.deleteBtn:hover {
+  background-color: var(--color-expense-bg);
+}
+
+.deleteErrorInline {
+  font-size: var(--font-size-xs);
+  color: var(--color-expense);
+  margin-right: var(--space-2);
+  white-space: nowrap;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Empty hint ── */
+.emptyHint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: var(--space-3) 0;
+}
+
+/* ── Add button ── */
+.addBtn {
+  margin-top: var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  border: 1.5px dashed var(--color-primary);
+  transition: background-color var(--transition-fast);
+}
+
+.addBtn:hover {
+  background-color: var(--color-primary-light);
+  opacity: 0.8;
+}
+
+/* ── Inline form (used for both add + edit) ── */
+.addFormWrapper {
+  margin-top: var(--space-3);
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.inlineForm {
+  flex: 1;
+}
+
+.categoryRow .inlineForm .form {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.formFieldLabel {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: var(--space-1);
+}
+
+/* ── Emoji grid ── */
+.emojiGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-1);
+}
+
+.emojiBtn {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface);
+  border: 2px solid transparent;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  cursor: pointer;
+}
+
+.emojiBtn:hover {
+  background-color: var(--color-border);
+}
+
+.emojiSelected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.emojiInput {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  transition: border-color var(--transition-fast);
+}
+
+.emojiInput:focus {
+  border-color: var(--color-border-focus);
+  outline: none;
+}
+
+.emojiInput::placeholder {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ── Label input ── */
+.labelInput {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.labelInput:focus {
+  border-color: var(--color-border-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.labelInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ── Form error ── */
+.formError {
+  font-size: var(--font-size-sm);
+  color: var(--color-expense);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-expense-bg);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-expense);
+}
+
+/* ── Form action buttons ── */
+.formActions {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.cancelFormBtn {
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  transition: background-color var(--transition-fast);
+}
+
+.cancelFormBtn:hover {
+  background-color: var(--color-border);
+}
+
+.saveFormBtn {
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--color-primary);
+  border: none;
+  transition: opacity var(--transition-fast);
+}
+
+.saveFormBtn:hover {
+  opacity: 0.88;
+}

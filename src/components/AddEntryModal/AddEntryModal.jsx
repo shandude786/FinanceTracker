@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from '../../constants/categories';
 import CategoryPicker from '../CategoryPicker/CategoryPicker';
 import styles from './AddEntryModal.module.css';
 
-const AddEntryModal = ({ onSave, onClose, initialData = null }) => {
+const AddEntryModal = ({ onSave, onClose, initialData = null, incomeCategories = [], expenseCategories = [] }) => {
   const isEditing = initialData !== null;
   const [type, setType] = useState(initialData?.type ?? 'expense');
   const [categoryId, setCategoryId] = useState(initialData?.categoryId ?? '');
@@ -11,8 +10,7 @@ const AddEntryModal = ({ onSave, onClose, initialData = null }) => {
   const [amount, setAmount] = useState(initialData?.amount != null ? String(initialData.amount) : '');
   const [error, setError] = useState('');
 
-  const categories =
-    type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
+  const categories = type === 'income' ? incomeCategories : expenseCategories;
 
   const handleTypeChange = (newType) => {
     setType(newType);
