@@ -11,7 +11,8 @@
   height: var(--header-height);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 var(--space-5);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -23,6 +24,24 @@
   font-size: var(--font-size-xl);
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+.settingsBtn {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+.settingsBtn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 /* ── Scrollable content area ── */
